@@ -1,9 +1,10 @@
-import { join } from 'path'
+import { join, parse } from 'path'
 import { getDirectories } from './utils/getDirectories'
 import { getFiles } from './utils/getFiles'
 import { getLastIndex } from './utils/getLastIndex'
 import { error, general, success } from './utils/log'
 import { renameFile } from './utils/renameFile'
+import { writeFileSync } from 'fs'
 
 process.on('uncaughtException', (err) => {
   error(err.message)
@@ -11,10 +12,17 @@ process.on('uncaughtException', (err) => {
 })
 
 const PORTFOLIO_DIR = join(__dirname, '../../assets/portfolio')
+const PORTFOLIO_JSON = join(__dirname, '../../assets/portfolio.json')
 
 general(`Evaluating directory: ${PORTFOLIO_DIR}`)
 
-const portfolioRecords = new Map<string, Set<string>>()
+const startTime = Date.now()
+
+interface PortfolioRecord {
+  [category: string]: string[]
+}
+
+const portfolioRecords: PortfolioRecord = {}
 
 const directories = getDirectories(PORTFOLIO_DIR)
 
@@ -30,19 +38,28 @@ directories.forEach((dir) =>
 categories.forEach((files, dir) => {
   const category = dir.split('.')[1]
 
-  dir = join(PORTFOLIO_DIR, dir)
+  const fullDir = join(PORTFOLIO_DIR, dir)
 
-  let currentIndex = getLastIndex(dir)
+  let currentIndex = getLastIndex(fullDir)
 
-  const renamedFiles = new Set<string>()
+  const renamedFiles = []
 
   files.forEach((file) => {
-    renamedFiles.add(renameFile(dir, file, ++currentIndex))
+    if (/[^0-9]/.test(parse(file).name))
+      renamedFiles.push(renameFile(fullDir, file, ++currentIndex))
+    else renamedFiles.push(file)
   })
 
-  portfolioRecords.set(category, renamedFiles)
+  portfolioRecords[category] = renamedFiles
+    .sort((a, b) => parseInt(parse(a).name) - parseInt(parse(b).name))
+    .map((file) => `${dir}/${file}`)
 })
 
-console.log('portfolioRecords :>> ', portfolioRecords)
+const data = {
+  categories: Array.from(categories.keys()),
+  photos: portfolioRecords
+}
 
-success('✔ Processing complete')
+writeFileSync(PORTFOLIO_JSON, JSON.stringify(data))
+
+success(`✔ Processing complete (${Date.now() - startTime}ms)`)

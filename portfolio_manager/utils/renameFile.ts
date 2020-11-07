@@ -1,5 +1,6 @@
 import { renameSync } from 'fs'
 import { parse, join } from 'path'
+import { general } from './log'
 
 export function renameFile(
   path: string,
@@ -9,6 +10,8 @@ export function renameFile(
   const { ext } = parse(oldName)
   const newName = `${index}${ext}`
 
+  general(`Renaming ${oldName} to ${newName}`)
   renameSync(join(path, oldName), join(path, newName))
+
   return newName
 }
