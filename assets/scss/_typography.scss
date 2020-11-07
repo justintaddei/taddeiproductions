@@ -1,0 +1,36 @@
+* {
+  font-family: $font--body;
+  font-size: var(--font-size--normal);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $font--heading;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: var(--font-size--heading-1);
+}
+h2 {
+  font-size: var(--font-size--heading-2);
+}
+h3 {
+  font-size: var(--font-size--heading-3);
+}
+h4,
+h5 {
+  font-size: var(--font-size--title);
+  font-weight: normal;
+}
+
+p {
+  line-height: 165%;
+}
+
+small,
+.text--small {
+  font-size: var(--font-size--small);
+}
