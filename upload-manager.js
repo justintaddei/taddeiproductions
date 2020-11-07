@@ -57,8 +57,9 @@ const getLargestFileIndex = async (path) => {
 const renameFile = (dir, name, index) => {
     const { ext } = parse(name)
 
-    rename(join(PORTFOLIO_DIR, dir, name), join(PORTFOLIO_DIR, dir, `${index}${ext}`), () => {
-
+    rename(join(PORTFOLIO_DIR, dir, name), join(PORTFOLIO_DIR, dir, `${index}${ext}`), (err) => {
+        if (err) console.error(red(err))
+        console.log(cyan(`Renamed ${name} to ${index}${ext}`));
     })
 }
 
