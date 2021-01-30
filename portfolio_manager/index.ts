@@ -14,7 +14,7 @@ process.on('uncaughtException', (err) => {
 const PORTFOLIO_DIR = join(__dirname, '../../assets/portfolio')
 const PORTFOLIO_JSON = join(__dirname, '../../assets/portfolio.json')
 
-general(`Evaluating directory: ${PORTFOLIO_DIR}`)
+general(`👀 Evaluating directory: ${PORTFOLIO_DIR}`)
 
 const startTime = Date.now()
 
@@ -25,9 +25,6 @@ interface PortfolioRecord {
 const portfolioRecords: PortfolioRecord = {}
 
 const directories = getDirectories(PORTFOLIO_DIR)
-
-// Only for logging
-directories.forEach((dir, i) => general(`${i + 1} • ${dir.split('.')[1]}`))
 
 const categories = new Map<string, string[]>()
 
@@ -56,10 +53,16 @@ categories.forEach((files, dir) => {
 })
 
 const data = {
-  categories: Array.from(categories.keys()),
+  categories: Array.from(categories.keys()).map((c) => c.split('.')[1]),
   photos: portfolioRecords
 }
 
+// Only for logging
+data.categories.forEach((cat, i) =>
+  general(`🔍 Scan: ${i + 1} • ${cat} (${data.photos[cat].length} photos)`)
+)
+
+general('🏗  Building portfolio.json')
 writeFileSync(PORTFOLIO_JSON, JSON.stringify(data))
 
-success(`✔ Processing complete (${Date.now() - startTime}ms)`)
+success(`✔  Processing complete (${Date.now() - startTime}ms)`)

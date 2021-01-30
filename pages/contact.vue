@@ -9,8 +9,8 @@
       <div class="info">
         <div class="info-container">
           <h3>Give us a call.</h3>
-          <a href="tel:+19187070308"
-            ><Button icon="smartphone">(918) 707-0308</Button></a
+          <a href="tel:+19189607803"
+            ><Button icon="smartphone">(918) 960-7803</Button></a
           >
           <h3>Or, send us an email.</h3>
           <a href="mailto:info@taddeiproductions.com"
@@ -21,13 +21,25 @@
         </div>
       </div>
       <div class="social-media">
-        <Button icon="youtube" icon-color="#f00">/taddeiproductions</Button>
-        <Button icon="facebook" icon-color="#2D88FF"
-          >/taddeiproductions.llc</Button
+        <a
+          target="_blank"
+          href="https://www.youtube.com/channel/UCaZQeWCGbgypn7ttZlL9Bag"
         >
-        <Button icon="instagram" icon-color="#AF3498"
-          >@taddeiproductions</Button
+          <Button icon="youtube" icon-color="#f00">/taddeiproductions</Button>
+        </a>
+        <a
+          target="_blank"
+          href="https://www.facebook.com/TaddeiProductions.llc/"
         >
+          <Button icon="facebook" icon-color="#2D88FF">
+            /taddeiproductions.llc
+          </Button>
+        </a>
+        <a target="_blank" href="https://www.instagram.com/taddeiproductions/">
+          <Button icon="instagram" icon-color="#AF3498">
+            @taddeiproductions
+          </Button>
+        </a>
       </div>
     </div>
   </div>
@@ -35,16 +47,21 @@
 
 <script>
 export default {
-  name: 'Contact'
+  name: 'Contact',
+  head: {
+    title: 'Contact Information | Official Site of Taddei Productions',
+    'og:title': 'Contact Information | Official Site of Taddei Productions',
+    'og:description':
+      'Professional Cinematography & Photography studio located in Tulsa Oklahoma',
+    'og:image': 'https://taddeiproductions.com/og/index.jpg'
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .contact {
-  position: absolute;
   width: 100%;
   overflow: hidden;
-  top: 0;
   padding: 208px 256px 72px 256px;
   min-height: 100vh;
 
@@ -180,7 +197,7 @@ export default {
   background: url('~assets/images/film-strip.svg');
   background-size: 100% auto;
   background-repeat: repeat-y;
-  bottom: 0;
+  bottom: -180px;
   left: 20%;
   transform: rotate(24deg);
   transform-origin: 0 100%;

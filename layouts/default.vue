@@ -1,11 +1,18 @@
 <template>
   <div>
     <icon-sprite />
-    <PageHeader />
-    <Nuxt />
+    <div class="container">
+      <PageHeader />
+      <Nuxt />
+    </div>
+    <PageFooter />
   </div>
 </template>
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
+
+.container {
+  min-height: 100vh;
+}
 </style>

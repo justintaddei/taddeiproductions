@@ -18,7 +18,7 @@
       />
 
       <div v-scroll-to:portfolio class="scroll-prompt">
-        <p>Our Story</p>
+        <p>What We Do</p>
         <Icon name="chevrons-down" />
       </div>
     </section>
@@ -40,13 +40,21 @@
             <div class="overlay"></div>
             <Icon name="play" />
           </div>
-          <Button icon="video">More Videos</Button>
+          <a
+            rel="noopener"
+            target="_blank"
+            href="https://www.youtube.com/channel/UCaZQeWCGbgypn7ttZlL9Bag"
+          >
+            <Button icon="video">More Videos</Button>
+          </a>
         </div>
       </div>
       <div class="photos">
         <h2>Still Photography</h2>
         <div class="photo-container">
-          <Button icon="grid">Full Portfolio</Button>
+          <nuxt-link to="/portfolio">
+            <Button icon="grid">View Portfolio</Button>
+          </nuxt-link>
           <div class="thumbnail">
             <img
               class="image"
@@ -60,7 +68,7 @@
     <div class="film-strip"></div>
     <section class="lets-work-together">
       <div class="info">
-        <h2>Let's work together</h2>
+        <h2>Let's work together.</h2>
         <p>
           Rumor has it we're pretty fun and easy to work with, so don't stress
           about anything.
@@ -97,6 +105,15 @@ export default {
         })
       })
     }
+  },
+  head: {
+    title:
+      'Videography & Photography in Tulsa Oklahoma | Taddei Productions - Official Site',
+    'og:title':
+      'Videography & Photography in Tulsa Oklahoma | Taddei Productions - Official Site',
+    'og:description':
+      'Professional Cinematography & Photography studio located in Tulsa Oklahoma',
+    'og:image': 'https://taddeiproductions.com/og/index.jpg'
   }
 }
 </script>
@@ -326,7 +343,7 @@ export default {
       display: flex;
       align-items: center;
 
-      .button {
+      a {
         margin: 0 160px 0 0;
         @media screen and (max-width: 1200px) {
           margin: 0 10vw 0 0;
@@ -336,7 +353,7 @@ export default {
       @media screen and (max-width: 850px) {
         flex-direction: column;
         align-items: flex-start;
-        .button {
+        a {
           margin: 64px 0 0 0;
           order: 2;
         }

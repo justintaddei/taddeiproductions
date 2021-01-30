@@ -63,7 +63,8 @@ export default {
     '@nuxtjs/auth-next',
     '@nuxtjs/style-resources',
     '@nuxtjs/svg',
-    'v-wave/nuxt'
+    'v-wave/nuxt',
+    'v-shared-element/nuxt'
   ],
   server: {
     port: 3000,

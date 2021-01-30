@@ -26,10 +26,10 @@
         }"
         class="indicator"
       ></div>
-      <nuxt-link v-wave exact to="/">Home</nuxt-link>
-      <nuxt-link v-wave to="/about">About</nuxt-link>
-      <nuxt-link v-wave to="/portfolio">Portfolio</nuxt-link>
-      <nuxt-link v-wave to="/contact">Contact</nuxt-link>
+      <nuxt-link exact to="/">Home</nuxt-link>
+      <nuxt-link to="/getting-ready">Getting Ready</nuxt-link>
+      <nuxt-link to="/portfolio">Portfolio</nuxt-link>
+      <nuxt-link to="/contact">Contact</nuxt-link>
     </nav>
   </header>
 </template>
@@ -65,14 +65,14 @@ export default {
     }
   },
   mounted() {
-    this.mobile = window.innerWidth <= 960
+    this.mobile = window.innerWidth <= 1024
 
     this.updateIndicatorPosition()
 
     let usesSmallerMargin = window.innerWidth <= 1200
 
     window.addEventListener('resize', () => {
-      this.mobile = window.innerWidth <= 960
+      this.mobile = window.innerWidth <= 1024
       usesSmallerMargin = window.innerWidth <= 1200
 
       this.updateIndicatorPosition()
@@ -178,10 +178,13 @@ header {
       &:hover {
         background: rgba(128, 128, 128, 0.03);
       }
+      &:active {
+        background: rgba(128, 128, 128, 0.2);
+      }
     }
   }
 
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1024px) {
     position: sticky;
     padding: 0 32px;
     overflow-x: hidden;
