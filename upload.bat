@@ -1,3 +1,3 @@
 @ECHO OFF
-npm run portfolio:generate
-PAUSE
+call npm run portfolio:generate
+PAUSE >nul
